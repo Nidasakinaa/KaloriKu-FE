@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>KaloriKu - Makan Sehat Tanpa Ribet!</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <!-- Navbar Start -->
+    <nav class="bg-green-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="dashboard.html" class="text-white text-2xl font-bold">KaloriKu</a>
+            <div class="space-x-4">
+                <a href="dashboard.html" class="text-white hover:text-gray-200">Home</a>
+                <a href="menu.html" class="text-white hover:text-gray-200">Menu</a>
+                <a href="article.html" class="text-white hover:text-gray-200">Article</a>
+                <a href="" class="text-white hover:text-gray-200">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Product Start -->
+    <div class="container mx-auto py-8">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-green-600 mb-4">Menu Kami</h2>
+            <p class="text-gray-700">Pilihan menu yang sehat dengan porsi terkontrol, bahan segar, dan kalori seimbang untuk gaya hidup yang lebih sehat.</p>
+        </div>
+        <div class="flex justify-center mb-8">
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg mx-2 hover:bg-green-400 transition" data-tab="diet">Diet</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg mx-2 hover:bg-green-400 transition" data-tab="minuman">Minuman Sehat</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg mx-2 hover:bg-green-400 transition" data-tab="camilan">Camilan Sehat</button>
+        </div>
+        <div id="diet" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Nasi Goreng" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Nasi Goreng</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 500 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Nasi, Telur, Kecap, Bawang</p>
+                </div>
+                <!-- Produk 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Salad Buah" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Salad Buah</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 200 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Apel, Anggur, Melon, Yogurt</p>
+                </div>
+                <!-- Produk 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Smoothie Bowl" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Smoothie Bowl</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 300 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Pisang, Stroberi, Granola</p>
+                </div>
+            </div>
+        </div>
+        <div id="minuman" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produk 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Smoothie Berry" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Smoothie Berry</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 180 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Stroberi, Blueberry, Yogurt</p>
+                </div>
+                <!-- Produk 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Green Detox Juice" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Green Detox Juice</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 120 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Bayam, Apel Hijau, Lemon</p>
+                </div>
+            </div>
+        </div>
+        <div id="camilan" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Produk 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Granola Bar" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Granola Bar</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 100 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Oat, Kacang Almond, Madu</p>
+                </div>
+                <!-- Produk 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/150" alt="Fruit Bowl" class="w-full h-40 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Fruit Bowl</h3>
+                    <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 150 kcal</p>
+                    <p class="text-gray-700"><strong>Komposisi:</strong> Anggur, Melon, Kiwi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product End -->
+
+    <!-- Footer Start -->
+    <footer class="bg-green-500 py-6">
+        <div class="container mx-auto text-center text-white">
+            <p>&copy; 2023 KaloriKu. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        document.querySelectorAll('button[data-tab]').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+                document.getElementById(button.getAttribute('data-tab')).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>

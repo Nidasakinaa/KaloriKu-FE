@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Management Menu Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/main.js"></script>
+    <script type="module" src="../js/fetch.js"></script>
+  </head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="flex flex-no-wrap">
+        <!-- Sidebar -->
+        <div class="w-64 bg-green-100 h-screen text-gray-800 flex flex-col">
+            <div class="p-6 text-center font-bold text-xl border-b border-green-300">
+                KaloriKu Admin
+            </div>
+            <nav class="flex-grow mt-4">
+                <a href="dashboard.html" class="block px-6 py-3 hover:bg-green-200 transition">Dashboard</a>
+                <a href="menu.html" class="block px-6 py-3 hover:bg-green-200 transition">Menu</a>
+                <a href="users.html" class="block px-6 py-3 hover:bg-green-200 transition">Users</a>
+            </nav>
+            <div class="mt-auto px-6 py-4 border-t border-green-300">
+                <button class="w-full bg-green-300 py-2 rounded hover:bg-green-200 transition">Logout</button>
+            </div>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-grow p-6">
+            <h1 class="text-2xl font-bold mb-4">Menu Management</h1>
+            <!-- Data Table Section -->
+            <div class="bg-white p-6 rounded-lg shadow mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Menu Data</h2>
+                    <a href="add_menu.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-400 transition"><i class="fas fa-plus"></i> Add New Menu</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="whitespace-nowrap h-11 bg-gray-100 border-b border-gray-200">
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">ID</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Nama</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Ingredients</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Kalori</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Deskripsi</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Kategori</th>
+                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ISI TABEL DARI SINI (BUAT pada FILE tabel.js) -->
+                            <!-- Contoh data -->
+                            <tr class="whitespace-nowrap h-11 border-b border-gray-200">
+                                <td class="px-4 py-2">1</td>
+                                <td class="px-4 py-2">Nasi Goreng</td>
+                                <td class="px-4 py-2">Nasi, Telur, Kecap, Bawang</td>
+                                <td class="px-4 py-2">500</td>
+                                <td class="px-4 py-2">Nasi goreng dengan bumbu khas Indonesia</td>
+                                <td class="px-4 py-2">Main Course</td>
+                                <td class="px-4 py-2">
+                                    <a href="edit_menu.html" class="text-blue-500 hover:underline">Edit</a> | 
+                                    <a href="#" class="text-red-500 hover:underline">Delete</a>
+                                </td>
+                            </tr>
+                            <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/controller/delete.js"></script>
+</body>
+</html>
