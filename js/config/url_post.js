@@ -1,7 +1,7 @@
-export let urlPOST = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/insert"
+export let urlPOST = "http://localhost:8080/insert"
 
 export function AmbilResponse(result) {
     console.log(result); 
     alert(result.message); 
-    window.location.href = "index.html"; 
+    window.location.href = "menu.html"; 
 }

@@ -14,24 +14,36 @@ function pushData() {
     
     let name = getValue("name");
     let description = getValue("description");
+    let ingredients = getValue("ingredients");
+    let calories = parseFloat(getValue("calories"));
     let category = getValue("category");
-    let image = getValue("image");
+    // let image = getValue("image");
 
     if (
         validateInput(name, "Name") &&
         validateInput(description, "Description") &&
-        validateInput(category, "Category") &&
-        validateInput(image, "Image") 
+        validateInput(ingredients, "Ingredients") &&
+        validateInput(calories, "Calories") &&
+        validateInput(category, "Category")
+        // validateInput(image, "Image") 
 
     ) {
         let data = {
             name: name,
             description: description,
+            ingredients: ingredients,
+            calories: calories,
             category: category,    
-            image: image,
+            // image: image,
         };
         postData(urlPOST, data, AmbilResponse);
     }
 }
 
-onClick("submitButton", pushData);
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("menuInsertForm");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();  // Mencegah form dari submit otomatis
+        pushData(); // Menjalankan fungsi pushData
+    });
+});

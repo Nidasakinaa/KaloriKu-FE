@@ -1,8 +1,7 @@
 import { putData } from "https://bukulapak.github.io/api/process.js";
 import { onClick, getValue } from "https://bukulapak.github.io/element/process.js";
-import { urlPUT, AmbilResponse } from "../config/url_put.js";
+import { urlPUT, AmbilResponse } from "../config/url_put_user.js";
 
-// Fungsi untuk memvalidasi input
 function validateInput(value, fieldName) {
     if (!value) {
         alert(`Please enter a valid ${fieldName}`);
@@ -14,27 +13,24 @@ function validateInput(value, fieldName) {
 // Fungsi untuk mengambil data dan melakukan update
 function pushData() {
     let name = getValue("name");
-    let description = getValue("description");
-    let ingredients = getValue("ingredients");
-    let calories = parseFloat(getValue("calories"));
-    let category = getValue("category");
-    // let image = getValue("image");
+    let phone = getValue("phone");
+    let username = getValue("username");
+    let password = parseFloat(getValue("password"));
+    let role = getValue("role");
 
     if (
-        validateInput(name, "Name") &&
-        validateInput(description, "Description") &&
-        validateInput(ingredients, "Ingredients") &&
-        validateInput(calories, "Calories") &&
-        validateInput(category, "Category") 
-        // validateInput(image, "Image")
+        validateInput(name, "FullName") &&
+        validateInput(phone, "Phone") &&
+        validateInput(username, "Username") &&
+        validateInput(password, "Password") &&
+        validateInput(role, "Role") 
     ) {
         let data = {
             name: name,
-            description: description,
-            ingredients: ingredients,
-            calories: calories,
-            category: category, // Ambil kategori dari dropdown
-            // image: image, // Ambil gambar (jika ada input gambar)
+            phone: phone,
+            username: username,
+            password: password,
+            role: role,
         };
 
         putData(urlPUT, data, AmbilResponse); // Kirim data ke API untuk update
