@@ -40,7 +40,7 @@ function pushData() {
 // Pastikan tombol memiliki id yang sesuai dengan "submitButton" di form HTML
 // Pastikan event listener ditambahkan pada form, bukan pada tombol
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("menuEditForm");
+    const form = document.getElementById("userEditForm");
     form.addEventListener("submit", function(event) {
         event.preventDefault();  // Mencegah form dari submit otomatis
         pushData(); // Menjalankan fungsi pushData

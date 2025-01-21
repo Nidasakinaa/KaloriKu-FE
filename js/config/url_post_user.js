@@ -1,4 +1,4 @@
-export let urlPOST = "http://localhost:8080/insertuser";
+export let urlPOST = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/registeruser";
 
 export function AmbilResponse(result) {
     console.log(result); 

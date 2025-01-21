@@ -24,7 +24,6 @@ async function fetchMenuData() {
       tr.className = "whitespace-nowrap h-11 border-b border-gray-200";
 
       tr.innerHTML = `
-                <td class="px-4 py-2">${item._id}</td>
                 <td class="px-4 py-2">${item.name}</td>
                 <td class="px-4 py-2">${item.ingredients}</td>
                 <td class="px-4 py-2">${item.calories}</td>
