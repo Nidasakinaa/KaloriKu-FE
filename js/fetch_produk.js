@@ -2,7 +2,7 @@
 async function fetchMenuData() {
   try {
     // Ambil data dari endpoint
-    const response = await fetch("http://localhost:8080/menu");
+    const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu");
 
     // Periksa apakah respons sukses
     if (!response.ok) {
@@ -81,7 +81,7 @@ async function fetchMenuData() {
 // Fungsi untuk menghapus item menu berdasarkan ID
 async function deleteMenuItem(id) {
   try {
-    const response = await fetch(`http://localhost:8080/delete/${id}`, {
+    const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/delete/${id}`, {
       method: "DELETE",
     });
 

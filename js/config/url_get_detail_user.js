@@ -7,7 +7,7 @@ if (!muserId) {
     console.log("userId:", userId);
 }
 
-export let urlFetch = "http://localhost:8080/user/" + userId;
+export let urlFetch = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/" + userId;
 
 console.log("Fetching from URL:", urlFetch);
 

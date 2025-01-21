@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const menuItemId = urlParams.get('menuItemId');
 
-export let urlPUT = "http://localhost:8080/update/" + menuItemId;
+export let urlPUT = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/update/" + menuItemId;
 
 export function AmbilResponse(result) {
     console.log(result);
