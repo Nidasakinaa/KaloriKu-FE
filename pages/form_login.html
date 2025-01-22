@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaloriKu - Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
@@ -23,23 +24,27 @@
 
     <!-- Login Form Start -->
     <div class="container mx-auto my-8">
-        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg" id="loginFormContainer" style="display:none;">
             <h2 class="text-2xl font-bold text-center text-green-600 mb-6">Login</h2>
-            <form>
+            <form id="loginForm">
                 <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
-                    <input id="email" type="email" class="w-full p-3 border rounded-lg" name="email" placeholder="Masukkan email" required>
+                    <label for="username" class="block text-gray-700 font-semibold mb-2">Username</label>
+                    <input id="username" type="text" class="w-full p-3 border rounded-lg" name="username"
+                        placeholder="Masukkan username" required>
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
-                    <input id="password" type="password" class="w-full p-3 border rounded-lg" name="password" placeholder="Masukkan password" required>
+                    <input id="password" type="password" class="w-full p-3 border rounded-lg" name="password"
+                        placeholder="Masukkan password" required>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-400 transition">Login</button>
+                    <button type="submit"
+                        class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-400 transition">Login</button>
                 </div>
             </form>
             <div class="text-center mt-4">
-                <p class="text-gray-700">Belum memiliki akun? <a href="costumer/register.html" class="text-green-500 hover:underline">Register</a></p>
+                <p class="text-gray-700">Belum memiliki akun? <a href="costumer/register.html"
+                        class="text-green-500 hover:underline">Register</a></p>
             </div>
         </div>
     </div>
@@ -55,20 +60,108 @@
 
     <!-- JavaScript for Login -->
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
 
-            // Simulasi login dan peran pengguna
-            if (email === 'admin@example.com' && password === 'admin123') {
-                // Redirect to admin dashboard
-                window.location.href = 'pages/admin/dashboard.html';
-            } else if (email === 'customer@example.com' && password === 'customer123') {
-                // Redirect to customer dashboard
-                window.location.href = 'pages/customer/dashboard.html';
-            } else {
-                alert('Email atau password salah!');
+        // Show pop-up to choose role (admin or customer)
+        Swal.fire({
+            title: 'Pilih Role Login',
+            text: 'Pilih peran login Anda:',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Admin',
+            cancelButtonText: 'Customer',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If Admin is chosen
+                localStorage.setItem("role", "admin");
+                document.getElementById("loginFormContainer").style.display = "block"; // Show login form
+            } else if (result.isDismissed) {
+                // If Customer is chosen
+                localStorage.setItem("role", "customer");
+                document.getElementById("loginFormContainer").style.display = "block"; // Show login form
+            }
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            // Ambil nilai input username dan password
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const role = localStorage.getItem("role"); // Get selected role
+
+            // Validasi input
+            if (!username || !password) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Harap isi username dan password!",
+                    allowOutsideClick: false
+                });
+                return;
+            }
+
+            // Siapkan payload sesuai dengan body request pada curl
+            const payload = {
+                username: username,
+                password: password,
+                role: role // Sesuaikan dengan role yang dipilih
+            };
+
+            try {
+                // Kirim request ke API menggunakan fetch
+                const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // Periksa respons dari server
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || "Login gagal. Silakan coba lagi.");
+                }
+
+                const data = await response.json(); // Ambil respons JSON
+
+                // Login berhasil
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Berhasil",
+                    text: `Selamat datang ${payload.username || "User"}!`,
+                    allowOutsideClick: false,
+                    confirmButtonText: "OK"
+                }).then(() => {
+
+                    // Menyimpan token dari response ke dalam localStorage
+                    if (data.token) {
+                        localStorage.setItem("token", data.token); // Menyimpan token
+                    }
+
+                    // Cek role pada data yang diterima dari server dan lakukan redirect sesuai role
+                    if (payload.role === "admin") {
+                        window.location.href = "admin/dashboard_admin.html";  // Admin redirect
+                    } else if (payload.role === "customer") {
+                        window.location.href = "customer/dashboard_cost.html";  // Customer redirect
+                    } else {
+                        // Jika role tidak sesuai
+                        Swal.fire({
+                            icon: "error",
+                            title: "Role Tidak Dikenal",
+                            text: "Role tidak terdaftar atau terjadi kesalahan pada sistem.",
+                            confirmButtonText: "OK"
+                        });
+                    }
+                });
+            } catch (error) {
+                // Tampilkan pesan error jika login gagal
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Gagal",
+                    text: error.message,
+                    allowOutsideClick: false
+                });
             }
         });
     </script>
