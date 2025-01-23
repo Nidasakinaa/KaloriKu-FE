@@ -142,8 +142,8 @@
                     // Cek role pada data yang diterima dari server dan lakukan redirect sesuai role
                     if (payload.role === "admin") {
                         window.location.href = "admin/dashboard_admin.html";  // Admin redirect
-                    } else if (payload.role === "customer") {
-                        window.location.href = "customer/dashboard_cost.html";  // Customer redirect
+                    } else if (payload.role === "custumer") {
+                        window.location.href = "custumer/dashboard_cost.html";  // Customer redirect
                     } else {
                         // Jika role tidak sesuai
                         Swal.fire({
