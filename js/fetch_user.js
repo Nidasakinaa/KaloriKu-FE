@@ -2,8 +2,8 @@
 async function fetchUser() {
     try {
       // Ambil data dari endpoint
-      const response = await fetch("http://localhost:8080/user");
-  
+      const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/user");
+      console.log("Response:", response);
       // Periksa apakah respons sukses
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -11,6 +11,8 @@ async function fetchUser() {
   
       // Parse data ke JSON
       const menuItems = await response.json();
+
+      console.log("User Data:", menuItems);
   
       // Elemen container untuk tabel
       const tbody = document.querySelector("tbody");
@@ -25,10 +27,7 @@ async function fetchUser() {
   
         tr.innerHTML = `
                   <td class="px-4 py-2">${item._id}</td>
-                  <td class="px-4 py-2">${item.name}</td>
-                  <td class="px-4 py-2">${item.phone}</td>
                   <td class="px-4 py-2">${item.username}</td>
-                  <td class="px-4 py-2">${item.password}</td>
                   <td class="px-4 py-2">${item.role}</td>
                   <td class="px-4 py-2">
                       <a href="edit_menu.html?menuItemId=${item._id}" class="text-blue-500 hover:underline edit-btn" data-id="${item._id}">Edit</a>
@@ -80,22 +79,25 @@ async function fetchUser() {
   
   // Fungsi untuk menghapus item menu berdasarkan ID
   async function deleteUser(id) {
+    console.log("Deleting user with ID:", id); // Debugging log
+
     try {
-      const response = await fetch(`http://localhost:8080/deleteUser/${id}`, {
-        method: "DELETE",
-      });
-  
-      if (response.ok) {
-        alert("User deleted successfully.");
-        fetchUser(); // Refresh data setelah menghapus
-      } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+        const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/delete/${id}`, {
+            method: "DELETE",
+        });
+
+        if (response.ok) {
+            alert("User deleted successfully.");
+            fetchUser(); // Refresh data setelah menghapus
+        } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
     } catch (error) {
-      console.error("Error deleting menu item:", error);
-      alert("Failed to delete menu item. Please try again later.");
+        console.error("Error deleting user:", error);
+        alert("Failed to delete user. Please try again later.");
     }
-  }
+}
+
   
   // Panggil fungsi fetchUser saat halaman dimuat
   document.addEventListener("DOMContentLoaded", fetchUser);

@@ -11,7 +11,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../js/main.js"></script>
-    <script type="module" src="../../js/fetch_produk.js"></script>
+    <script type="module" src="../../js/get_menu_user.js"></script>
 </head>
 
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
@@ -29,6 +29,8 @@
     </nav>
     <!-- Navbar End -->
 
+
+
     <!-- Product Start -->
     <div class="container mx-auto py-8">
         <div class="text-center mb-8">
@@ -43,7 +45,23 @@
         <div id="vegan" class="tab-content">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Vegan Product 1 -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <table class="bg-white p-6 rounded-lg shadow-lg">
+                    <thead>
+                        <tr class="bg-white p-6 rounded-lg shadow-lg">
+                            <th class="w-full h-80 object-cover rounded-lg mb-4">image</th>
+                            <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Ingredients</th>
+                            <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Kalori</th>
+                            <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Deskripsi</th>
+                            <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Kategori</th>
+                            <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILE table.js) -->
+                    </tbody>
+                </table>
+
+                <!-- <div class="bg-white p-6 rounded-lg shadow-lg">
                     <img src="https://soupchick.s3.amazonaws.com/wp-content/uploads/2024/06/07120058/Vegan-Salad-Recipe01.webp" alt="Vegan Salad" class="w-full h-80 object-cover rounded-lg mb-4">
                     <h3 class="text-xl font-semibold mb-2">Vegan Salad</h3>
                     <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 150 kcal</p>
@@ -54,9 +72,9 @@
                         <li>Alpukat: 40 gram (64 kcal)</li>
                         <li>Olive Oil: 2 sendok teh (80 kcal)</li>
                     </ul>
-                </div>                
+                </div>                 -->
                 <!-- Vegan Product 2 -->
-                <div class="bg-white p-6 rounded-lg shadow-lg">
+                <!-- <div class="bg-white p-6 rounded-lg shadow-lg">
                     <img src="https://i.pinimg.com/736x/e2/40/64/e24064c120f863e2a604ca99c85caaa0.jpg" alt="Vegan Bowl" class="w-full h-80 object-cover rounded-lg mb-4">
                     <h3 class="text-xl font-semibold mb-2">Vegan Bowl</h3>
                     <p class="text-gray-700 mb-2"><strong>Kalori:</strong> 250 kcal</p>
@@ -69,7 +87,7 @@
                         <li>Daun Hijau: 50 gram (12.5 kcal)</li>
                         <li>Ubi Jalar: 50 gram (43 kcal)</li>
                     </ul>
-                </div>      
+                </div>       -->
             </div>
         </div>
         <div id="high-protein" class="tab-content hidden">

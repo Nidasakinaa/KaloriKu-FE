@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Management Users Data</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../../js/fetch_user.js"></script>
 </head>
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="flex flex-no-wrap">
@@ -37,7 +38,6 @@
                             <tr class="whitespace-nowrap h-11 bg-gray-100 border-b border-gray-200">
                                 <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">ID</th>
                                 <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Nama</th>
-                                <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Email</th>
                                 <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Role</th>
                                 <th class="px-4 py-2 text-left font-semibold text-xs text-gray-500 uppercase">Aksi</th>
                             </tr>
@@ -52,7 +52,7 @@
                                 <td class="px-4 py-2">Admin</td>
                                 <td class="px-4 py-2">
                                     <a href="#" class="text-blue-500 hover:underline">Edit</a> | 
-                                    <a href="#" class="text-red-500 hover:underline">Delete</a>
+                                    <a href="#" class="text-red-500 hover:underline" data-id="123" onclick="deleteUser(this.dataset.id)">Delete</a>
                                 </td>
                             </tr>
                             <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
