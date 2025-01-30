@@ -11,6 +11,7 @@ async function fetchMenuData() {
 
     // Parse data ke JSON
     const menuItems = await response.json();
+    console.log("Menu Data:", menuItems);
 
     // Elemen container untuk tabel
     const tbody = document.querySelector("tbody");
@@ -24,6 +25,9 @@ async function fetchMenuData() {
       tr.className = "whitespace-nowrap h-11 border-b border-gray-200";
 
       tr.innerHTML = `
+<td class="px-4 py-2">
+    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-full">
+</td>
                 <td class="px-4 py-2">${item.name}</td>
                 <td class="px-4 py-2">${item.ingredients}</td>
                 <td class="px-4 py-2">${item.calories}</td>
@@ -40,22 +44,22 @@ async function fetchMenuData() {
     });
 
     document.querySelectorAll(".edit-btn").forEach((button) => {
-        button.addEventListener("click", (event) => {
-          event.preventDefault(); // Mencegah navigasi langsung
-  
-          const id = button.getAttribute("data-id");
-          const item = menuItems.find((menuItem) => menuItem._id === id);
+      button.addEventListener("click", (event) => {
+        event.preventDefault(); // Mencegah navigasi langsung
+
+        const id = button.getAttribute("data-id");
+        const item = menuItems.find((menuItem) => menuItem._id === id);
+        console.log("Menu Data:", item); // Tampilkan data menu di console
+
+        // Tampilkan popup konfirmasi
+        if (confirm(`Edit menu item: ${item.name}?`)) {
           console.log("Menu Data:", item); // Tampilkan data menu di console
 
-          // Tampilkan popup konfirmasi
-          if (confirm(`Edit menu item: ${item.name}?`)) {
-            console.log("Menu Data:", item); // Tampilkan data menu di console
-  
-            // Navigasi ke halaman edit
-            window.location.href = `edit_menu.html?menuItemId=${id}`;
-          }
-        });
+          // Navigasi ke halaman edit
+          window.location.href = `edit_menu.html?menuItemId=${id}`;
+        }
       });
+    });
 
     // Tambahkan event listener untuk tombol delete
     document.querySelectorAll(".delete-btn").forEach((button) => {

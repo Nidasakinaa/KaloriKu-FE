@@ -1,10 +1,7 @@
 export function isiData(results) {  
     console.log("API Results:", results); // Log hasil API
     const inputMapping = [
-        { id: 'name', path: 'name' },
-        { id: 'phone', path: 'phone' },
         { id: 'username', path: 'username' },
-        { id: 'password', path: 'password' },
         { id: 'role', path: 'role' }
     ];
   

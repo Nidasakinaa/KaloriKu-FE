@@ -7,7 +7,7 @@ if (!menuItemId) {
     console.log("menuItemId:", menuItemId);
 }
 
-export let urlFetch = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu" + menuItemId;
+export let urlFetch = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu/" + menuItemId;
 
 console.log("Fetching from URL:", urlFetch);
 

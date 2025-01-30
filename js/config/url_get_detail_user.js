@@ -7,7 +7,7 @@ if (!userId) {
     console.log("userId:", userId);
 }
 
-export let urlFetch = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/user" + userId;
+export let urlFetch = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/" + userId;
 
 console.log("Fetching from URL:", urlFetch);
 

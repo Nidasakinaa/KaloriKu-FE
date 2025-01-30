@@ -44,7 +44,7 @@ async function fetchUser() {
             event.preventDefault(); // Mencegah navigasi langsung
     
             const id = button.getAttribute("data-id");
-            const item = users.find((users) => users._id === id);
+            const item = menuItems.find((user) => user._id === id);
             console.log("User:", item); // Tampilkan data user di console
   
             // Tampilkan popup konfirmasi
@@ -52,7 +52,7 @@ async function fetchUser() {
               console.log("User Data:", item); // Tampilkan data user di console
     
               // Navigasi ke halaman edit
-              window.location.href = `edit_user.html?userId=${id}`;
+              window.location.href = `edit_users.html?userId=${id}`;
             }
           });
         });
