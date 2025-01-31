@@ -3,9 +3,7 @@ export let isiTableUser =
 <tr class="h-18 border-b border-coolGray-100">
     <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#ID#</th>
     <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#NAMA#</th>
-    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#NO.HP#</th>
     <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#USERNAME#</th>
-    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">#PASSWORD#</th>
     <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-500 text-left">#ROLE#</th>
     <th class="whitespace-nowrap pr-4 bg-white text-sm font-medium text-coolGray-800">
         <button type="button" class="btn btn-link p-0" onclick="window.location.href='edit.html?userId=#IDEDIT#'"> Edit </button>
