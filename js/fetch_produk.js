@@ -16,15 +16,15 @@ async function fetchMenuData() {
     menuItems.forEach((item) => {
       let imageUrl = item.image;
 
-      // Jika gambar dari Google Drive, ubah ke format yang benar
-      if (imageUrl.includes("drive.google.com")) {
-        const fileId = imageUrl.split("id=")[1] || imageUrl.split("/d/")[1]?.split("/")[0];
+      // Jika gambar berasal dari Google Drive, ubah ke format yang benar
+      if (imageUrl.includes("googleusercontent.com")) {
+        const fileId = imageUrl.split("/d/")[1]?.split("/")[0];
         if (fileId) {
           imageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
         }
       }
 
-      // Jika gambar dari GitHub Pages, pastikan formatnya benar
+      // Jika gambar berasal dari GitHub Pages, pastikan formatnya benar
       if (imageUrl.includes("github.io")) {
         imageUrl = imageUrl.replace("github.com", "github.io").replace("/blob/", "/");
       }
