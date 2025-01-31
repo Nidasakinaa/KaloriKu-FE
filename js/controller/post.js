@@ -17,15 +17,17 @@ function pushData() {
     let ingredients = getValue("ingredients");
     let calories = parseFloat(getValue("calories"));
     let category = getValue("category");
-    // let image = getValue("image");
+    let image = getValue("image");
+
+    console.log("URL yang dikirim:", image); // Debugging URL gambar
 
     if (
         validateInput(name, "Name") &&
         validateInput(description, "Description") &&
         validateInput(ingredients, "Ingredients") &&
         validateInput(calories, "Calories") &&
-        validateInput(category, "Category")
-        // validateInput(image, "Image") 
+        validateInput(category, "Category") &&
+        validateInput(image, "Image") 
 
     ) {
         let data = {
@@ -34,7 +36,7 @@ function pushData() {
             ingredients: ingredients,
             calories: calories,
             category: category,    
-            // image: image,
+            image: image,
         };
         postData(urlPOST, data, AmbilResponse);
     }

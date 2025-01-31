@@ -5,7 +5,8 @@ export function isiData(results) {
       { id: 'description', path: 'description' },
       { id: 'ingredients', path: 'ingredients' },
       { id: 'calories', path: 'calories' },
-      { id: 'category', path: 'category' }
+      { id: 'category', path: 'category' },
+      { id: 'image', path: 'image' }
   ];
 
   inputMapping.forEach(({ id, path }) => {

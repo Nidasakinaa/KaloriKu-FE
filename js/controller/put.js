@@ -18,15 +18,15 @@ function pushData() {
     let ingredients = getValue("ingredients");
     let calories = parseFloat(getValue("calories"));
     let category = getValue("category");
-    // let image = getValue("image");
+    let image = getValue("image");
 
     if (
         validateInput(name, "Name") &&
         validateInput(description, "Description") &&
         validateInput(ingredients, "Ingredients") &&
         validateInput(calories, "Calories") &&
-        validateInput(category, "Category") 
-        // validateInput(image, "Image")
+        validateInput(category, "Category") &&
+        validateInput(image, "Image")
     ) {
         let data = {
             name: name,
@@ -34,7 +34,7 @@ function pushData() {
             ingredients: ingredients,
             calories: calories,
             category: category, // Ambil kategori dari dropdown
-            // image: image, // Ambil gambar (jika ada input gambar)
+            image: image, // Ambil gambar (jika ada input gambar)
         };
 
         putData(urlPUT, data, AmbilResponse); // Kirim data ke API untuk update
