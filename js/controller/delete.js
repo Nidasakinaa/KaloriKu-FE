@@ -6,7 +6,7 @@ function confirmDelete(IDHAPUS) {
 
 function deleteData(IDHAPUS) {
     var menuItemId = IDHAPUS;
-    var target_url = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/delete/" + menuItemId;
+    var target_url = "https://ws-kaloriku-4cf736febaf0.herokuapp.com/deleteMenu/" + menuItemId;
 
     var requestOptions = {
         method: 'DELETE',

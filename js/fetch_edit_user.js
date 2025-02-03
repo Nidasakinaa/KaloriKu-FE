@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Kirim data ke server dengan method PUT
-            const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/update/${userId}`, {
+            const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/updateUser/${userId}`, {
                 method: "PUT", // Pastikan method sesuai dengan API
                 headers: {
                     "Content-Type": "application/json"

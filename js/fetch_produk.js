@@ -84,7 +84,7 @@ async function fetchMenuData() {
 // Fungsi untuk menghapus item menu berdasarkan ID
 async function deleteMenuItem(id) {
   try {
-    const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/delete/${id}`, {
+    const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/deleteMenu/${id}`, {
       method: "DELETE",
     });
 
