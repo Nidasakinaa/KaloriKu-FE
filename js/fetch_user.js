@@ -82,7 +82,7 @@ async function fetchUser() {
     console.log("Deleting user with ID:", id); // Debugging log
 
     try {
-        const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/delete/${id}`, {
+        const response = await fetch(`https://ws-kaloriku-4cf736febaf0.herokuapp.com/user/deleteUser/${id}`, {
             method: "DELETE",
         });
 

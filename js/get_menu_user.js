@@ -19,6 +19,7 @@ async function fetchMenuData() {
           card.innerHTML = `
               <img src="${item.image}" alt="${item.name}" class="w-full h-80 object-cover rounded-lg mb-4">
               <h3 class="text-xl font-semibold mb-2">${item.name}</h3>
+              <p class="text-gray-700 mb-2"><strong>Kategori:</strong> ${item.category}</p>
               <p class="text-gray-700 mb-2"><strong>Kalori:</strong> ${item.calories} kcal</p>
               <p class="text-gray-700"><strong>Komposisi:</strong></p>
               <ul class="list-disc pl-5 text-gray-700">

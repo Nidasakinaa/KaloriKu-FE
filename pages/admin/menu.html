@@ -11,6 +11,14 @@
         body {
             font-family: 'Inter', sans-serif;
         }
+        .table-auto th, .table-auto td {
+            white-space: normal;
+        }
+        .table-auto th:nth-child(3), .table-auto td:nth-child(3), 
+        .table-auto th:nth-child(5), .table-auto td:nth-child(5) {
+            max-width: 200px;
+            word-wrap: break-word;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans leading-relaxed tracking-normal">

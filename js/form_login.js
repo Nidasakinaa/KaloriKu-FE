@@ -53,9 +53,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         }).then(() => {
             // Redirect ke halaman sesuai role atau dashboard
             if (data.role === "admin") {
-                window.location.href = "pages/admin/dashboard.html";
+                window.location.href = "pages/admin/dashboard_admin.html";
             } else {
-                window.location.href = "pages/customer/dashboard.html";
+                window.location.href = "pages/customer/dashboard_cost.html";
             }
         });
     } catch (error) {
