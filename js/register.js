@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        const fullname = document.getElementById("username").value;
+        const fullname = document.getElementById("name").value;
         const phone = document.getElementById("phone").value;
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
@@ -12,19 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
         
         const requestBody = {
             fullname: fullname,
-            phone: phone,
+            phonenumber: phone,
             username: username,
             password: password,
             role: role // Bisa diganti sesuai kebutuhan
         };
 
         try {
-            const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/registeruser", {
+            const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/insertUser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(requestBody)
+                body: JSON.stringify(requestBody)                                
             });
 
             const result = await response.json();

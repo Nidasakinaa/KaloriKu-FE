@@ -7,7 +7,7 @@ async function fetchMenuData() {
       }
       
       const menuItems = await response.json();
-      console.log("Menu Data:", menuItems);
+    //   console.log("Menu Data:", menuItems);
       
       const container = document.getElementById("menu-container");
       container.innerHTML = ""; // Kosongkan kontainer sebelum menambahkan data baru

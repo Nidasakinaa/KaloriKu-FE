@@ -2,7 +2,9 @@ export function isiData(results) {
     console.log("API Results:", results); // Log hasil API
     const inputMapping = [
         { id: 'username', path: 'username' },
-        { id: 'role', path: 'role' }
+        { id: 'role', path: 'role' },
+        { id: 'name', path: 'name' },
+        { id: 'phone', path: 'phone' },
     ];
   
     inputMapping.forEach(({ id, path }) => {

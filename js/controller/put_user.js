@@ -19,7 +19,7 @@ function pushData() {
     let role = getValue("role");
 
     if (
-        validateInput(name, "FullName") &&
+        validateInput(name, "Name") &&
         validateInput(phone, "Phone") &&
         validateInput(username, "Username") &&
         validateInput(password, "Password") &&

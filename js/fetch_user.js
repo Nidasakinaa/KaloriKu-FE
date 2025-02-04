@@ -3,7 +3,7 @@ async function fetchUser() {
     try {
       // Ambil data dari endpoint
       const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/user");
-      console.log("Response:", response);
+      // console.log("Response:", response);
       // Periksa apakah respons sukses
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -12,7 +12,7 @@ async function fetchUser() {
       // Parse data ke JSON
       const menuItems = await response.json();
 
-      console.log("User Data:", menuItems);
+      // console.log("User Data:", menuItems);
   
       // Elemen container untuk tabel
       const tbody = document.querySelector("tbody");
@@ -48,7 +48,7 @@ async function fetchUser() {
             console.log("User:", item); // Tampilkan data user di console
   
             // Tampilkan popup konfirmasi
-            if (confirm(`Edit user: ${item.name}?`)) {
+            if (confirm(`Edit user: ${item.username}?`)) {
               console.log("User Data:", item); // Tampilkan data user di console
     
               // Navigasi ke halaman edit
@@ -62,7 +62,8 @@ async function fetchUser() {
         button.addEventListener("click", async (event) => {
           event.preventDefault();
           const id = button.getAttribute("data-id");
-          if (confirm("Are you sure you want to delete this user?")) {
+          const item = menuItems.find((user) => user._id === id);
+          if (confirm(`Are you sure you want to delete user ${item.username}?`)) {
             await deleteUser(id);
           }
         });

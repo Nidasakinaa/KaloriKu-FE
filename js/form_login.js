@@ -1,71 +1,103 @@
-import Swal from "sweetalert2";
+document.addEventListener("DOMContentLoaded", function () {
+    // Pastikan elemen form login terlihat setelah halaman dimuat
+    const loginFormContainer = document.getElementById("loginFormContainer");
+    if (loginFormContainer) {
+        loginFormContainer.style.display = "block";
+    } else {
+        console.error("Elemen loginFormContainer tidak ditemukan.");
+    }
 
-document.getElementById("loginForm").addEventListener("submit", async function (event) {
-    event.preventDefault(); // Mencegah reload halaman
-
-    // Ambil nilai input username dan password
-    const username = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    // Validasi input
-    if (!username || !password) {
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Harap isi username dan password!",
-            allowOutsideClick: false
-        });
+    // Event listener untuk menangani form login
+    const loginForm = document.getElementById("loginForm");
+    if (!loginForm) {
+        console.error("Elemen loginForm tidak ditemukan.");
         return;
     }
 
-    // Siapkan payload sesuai dengan body request pada curl
-    const payload = {
-        username: username,
-        password: password,
-        role: "admin" // Sesuaikan dengan role dari backend Anda
-    };
+    loginForm.addEventListener("submit", async function (event) {
+        event.preventDefault(); // Mencegah reload halaman
 
-    try {
-        // Kirim request ke API menggunakan fetch
-        const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
+        // Ambil nilai input username dan password
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
 
-        // Periksa respons dari server
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Login gagal. Silakan coba lagi.");
+        // Validasi input kosong
+        if (!username || !password) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Harap isi username dan password!",
+                allowOutsideClick: false
+            });
+            return;
         }
 
-        const data = await response.json(); // Ambil respons JSON
+        try {
+        
+            // Kirim request ke API menggunakan fetch
+            const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, password })
+            });
+        
+        
+            // Periksa apakah respons dari server berhasil
+            const data = await response.json();
 
-        // Login berhasil
-        Swal.fire({
-            icon: "success",
-            title: "Login Berhasil",
-            text: `Selamat datang ${data.username || "User"}!`,
-            allowOutsideClick: false,
-            confirmButtonText: "OK"
-        }).then(() => {
-            // Redirect ke halaman sesuai role atau dashboard
-            if (data.role === "admin") {
-                window.location.href = "pages/admin/dashboard_admin.html";
-            } else {
-                window.location.href = "pages/customer/dashboard_cost.html";
+            if (!response.ok) {
+                throw new Error(data.message || "Login gagal. Silakan coba lagi.");
             }
-        });
-    } catch (error) {
-        // Tangani kesalahan login
-        Swal.fire({
-            icon: "error",
-            title: "Login Gagal",
-            text: error.message,
-            allowOutsideClick: false,
-            confirmButtonText: "OK"
-        });
-    }
+
+            // Periksa token dan role
+            const token = data.token;
+            let role = data.role; // Role yang diterima dari server
+
+            
+            if (!token) {
+                throw new Error("Token tidak valid. Silakan coba lagi.");
+            }
+            
+            // Jika role tidak ada, set default sebagai 'user'
+            if (!role) {
+                role = "user";
+            }
+
+            // Simpan token & role ke localStorage
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", role);
+        
+            // Login berhasil
+            Swal.fire({
+                icon: "success",
+                title: "Login Berhasil",
+                text: `Selamat datang, ${username}!`,
+                allowOutsideClick: false,
+                confirmButtonText: "OK"
+            }).then(() => {
+                // Redirect ke halaman sesuai role
+                if (role === "admin") {
+                    window.location.href = "/pages/admin/dashboard_admin.html";
+                } else if (role === "customer") {
+                    window.location.href = "/pages/costumer/dashboard_cost.html";
+                } else {
+                    window.location.href = "/pages/user/dashboard_user.html"; // Default redirect untuk user
+                }
+            });
+        
+        } catch (error) {
+            console.error("Terjadi kesalahan saat login:", error);
+        
+            // Tangani kesalahan login
+            Swal.fire({
+                icon: "error",
+                title: "Login Gagal",
+                text: error.message,
+                allowOutsideClick: false
+            });
+        }
+        
+    });
 });

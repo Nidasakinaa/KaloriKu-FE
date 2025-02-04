@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Ambil data dari form
         const formData = {
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
             username: document.getElementById("username").value,
+            // password: document.getElementById("password").value,  
             role: document.getElementById("role").value
         };
 

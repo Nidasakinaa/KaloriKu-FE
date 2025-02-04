@@ -11,7 +11,7 @@ async function fetchMenuData() {
 
     // Parse data ke JSON
     const menuItems = await response.json();
-    console.log("Menu Data:", menuItems);
+    // console.log("Menu Data:", menuItems);
 
     // Elemen container untuk tabel
     const tbody = document.querySelector("tbody");
@@ -30,7 +30,7 @@ async function fetchMenuData() {
 </td>
                 <td class="px-4 py-2">${item.name}</td>
                 <td class="px-4 py-2">${item.ingredients}</td>
-                <td class="px-4 py-2">${item.calories}</td>
+                <td class="px-4 py-2">${item.calories} kcal</td>
                 <td class="px-4 py-2">${item.description}</td>
                 <td class="px-4 py-2">${item.category}</td>
                 <td class="px-4 py-2">
