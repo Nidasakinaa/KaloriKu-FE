@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 body: JSON.stringify(requestBody)                                
             });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Registrasi gagal. Silakan coba lagi.");
+            }
+    
             const result = await response.json();
             
             Swal.fire({
