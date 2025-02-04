@@ -29,14 +29,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const result = await response.json();
             
-            if (response.ok) {
-                alert("Registration successful! Redirecting to login page...");
+            Swal.fire({
+                icon: "success",
+                title: "Registrasi Berhasil",
+                text: "Akun Anda telah berhasil dibuat!",
+                allowOutsideClick: false,
+                confirmButtonText: "OK"
+            }).then(() => {
                 window.location.href = "/pages/form_login.html";
-            } else {
-                alert("Registration failed: " + result.message);
-            }
+            });
         } catch (error) {
-            alert("An error occurred: " + error.message);
+            Swal.fire({
+                icon: "error",
+                title: "Registrasi Gagal",
+                text: error.message,
+                allowOutsideClick: false
+            });
         }
     });
 });
