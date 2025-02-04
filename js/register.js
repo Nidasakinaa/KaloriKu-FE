@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
             
             if (response.ok) {
                 alert("Registration successful! Redirecting to login page...");
-                window.location.href = "../form_login.html";
+                window.location.href = "/pages/form_login.html";
             } else {
                 alert("Registration failed: " + result.message);
             }
