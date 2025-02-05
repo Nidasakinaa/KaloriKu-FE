@@ -17,33 +17,32 @@ document.addEventListener("DOMContentLoaded", function () {
     loginForm.addEventListener("submit", async function (event) {
         event.preventDefault(); // Mencegah reload halaman
 
-        // Ambil nilai input username dan password
+        // Ambil nilai input username, password, dan role
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
+        const role = document.getElementById("role").value;
 
         // Validasi input kosong
-        if (!username || !password) {
+        if (!username || !password || !role) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Harap isi username dan password!",
+                text: "Harap isi username, password, dan role!",
                 allowOutsideClick: false
             });
             return;
         }
 
         try {
-        
             // Kirim request ke API menggunakan fetch
             const response = await fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ username, password, role })
             });
-        
-        
+
             // Periksa apakah respons dari server berhasil
             const data = await response.json();
 
@@ -53,22 +52,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Periksa token dan role
             const token = data.token;
-            let role = data.role; // Role yang diterima dari server
 
-            
             if (!token) {
                 throw new Error("Token tidak valid. Silakan coba lagi.");
-            }
-            
-            // Jika role tidak ada, set default sebagai 'user'
-            if (!role) {
-                role = "user";
             }
 
             // Simpan token & role ke localStorage
             localStorage.setItem("token", token);
             localStorage.setItem("role", role);
-        
+
             // Login berhasil
             Swal.fire({
                 icon: "success",
@@ -86,10 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = "/pages/index.html"; // Default redirect jika role tidak dikenali
                 }
             });
-        
+
         } catch (error) {
             console.error("Terjadi kesalahan saat login:", error);
-        
+
             // Tangani kesalahan login
             Swal.fire({
                 icon: "error",
@@ -98,6 +90,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 allowOutsideClick: false
             });
         }
-        
     });
 });
