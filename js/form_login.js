@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (role === "customer") {
                     window.location.href = "/pages/costumer/dashboard_cost.html";
                 } else {
-                    window.location.href = "/pages/user/dashboard_user.html"; // Default redirect untuk user
+                    window.location.href = "/pages/index.html"; // Default redirect jika role tidak dikenali
                 }
             });
         
