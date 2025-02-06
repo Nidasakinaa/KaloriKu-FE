@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 allowOutsideClick: false,
                 confirmButtonText: "OK"
             }).then(() => {
-                window.location.href = "/pages/form_login.html";
+                window.location.href = "../../pages/form_login.html";
             });
         } catch (error) {
             console.error("Terjadi kesalahan saat registrasi:", error);
