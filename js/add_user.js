@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async function (event) {
         event.preventDefault(); // Prevent default form submission
 
-        const fullname = document.getElementById("fullname").value;
+        const name = document.getElementById("name").value;
         const phonenumber = document.getElementById("phone").value;
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         const role = document.getElementById("role").value;
 
         const requestBody = {
-            fullname: fullname,
+            name: name,
             phone: phonenumber, // Sesuai dengan request body curl
             username: username,
             password: password,

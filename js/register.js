@@ -2,14 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("register-form").addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const fullname = document.getElementById("fullname").value.trim();
+        const name = document.getElementById("name").value.trim();
         const phone = document.getElementById("phone").value.trim();
         const username = document.getElementById("username").value.trim();
         const password = document.getElementById("password").value.trim();
         const role = document.getElementById("role").value;
 
         // Validasi nama
-        if (!/^[a-zA-Z\s]+$/.test(fullname)) {
+        if (!/^[a-zA-Z\s]+$/.test(name)) {
             Swal.fire({
                 icon: "error",
                 title: "Invalid Name",
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const requestBody = {
-            fullname: fullname,
+            name: name,
             phone: phone,
             username: username,
             password: password,
