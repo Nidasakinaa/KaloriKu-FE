@@ -71,11 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then(() => {
                 // Redirect ke halaman sesuai role
                 if (role === "admin") {
-                    window.location.href = "KaloriKu-FE/pages/admin/dashboard_admin.html";
+                    window.location.href = "../../pages/admin/dashboard_admin.html";
                 } else if (role === "customer") {
-                    window.location.href = "KaloriKu-FE/pages/costumer/dashboard_cost.html";
+                    window.location.href = "../../pages/costumer/dashboard_cost.html";
                 } else {
-                    window.location.href = "KaloriKu-FE/pages/index.html"; // Default redirect jika role tidak dikenali
+                    window.location.href = "../../pages/index.html"; // Default redirect jika role tidak dikenali
                 }
             });
 
