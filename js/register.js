@@ -1,21 +1,52 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("register-form");
-    
-    form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Prevent default form submission
+    document.getElementById("register-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-        const name = document.getElementById("fullname").value;
-        const phone = document.getElementById("phone").value;
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
+        const fullname = document.getElementById("fullname").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
         const role = document.getElementById("role").value;
-        
+
+        // Validasi nama
+        if (!/^[a-zA-Z\s]+$/.test(fullname)) {
+            Swal.fire({
+                icon: "error",
+                title: "Invalid Name",
+                text: "Nama harus berupa huruf.",
+                allowOutsideClick: false
+            });
+            return;
+        }
+
+        // Validasi nomor HP
+        if (!/^08\d{8,}$/.test(phone)) {
+            Swal.fire({
+                icon: "error",
+                title: "Invalid Phone Number",
+                text: "Nomor HP harus berupa angka dan diawali dengan 08.",
+                allowOutsideClick: false
+            });
+            return;
+        }
+
+        // Validasi role
+        if (!role) {
+            Swal.fire({
+                icon: "error",
+                title: "Role Not Selected",
+                text: "Harap pilih role.",
+                allowOutsideClick: false
+            });
+            return;
+        }
+
         const requestBody = {
-            name: name,
+            fullname: fullname,
             phone: phone,
             username: username,
             password: password,
-            role: role // Bisa diganti sesuai kebutuhan
+            role: role
         };
 
         try {
@@ -24,16 +55,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(requestBody)                                
+                body: JSON.stringify(requestBody)
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || "Registrasi gagal. Silakan coba lagi.");
             }
-    
+
             const result = await response.json();
-            
+
             Swal.fire({
                 icon: "success",
                 title: "Registrasi Berhasil",
@@ -44,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "/pages/form_login.html";
             });
         } catch (error) {
+            console.error("Terjadi kesalahan saat registrasi:", error);
+
             Swal.fire({
                 icon: "error",
                 title: "Registrasi Gagal",
