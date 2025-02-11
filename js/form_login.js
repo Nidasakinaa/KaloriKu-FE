@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Simpan token & role ke localStorage
             localStorage.setItem("token", token);
             localStorage.setItem("role", role);
+            localStorage.setItem("personalized_categories", JSON.stringify(data.personalized_categories));
 
             // Login berhasil
             Swal.fire({

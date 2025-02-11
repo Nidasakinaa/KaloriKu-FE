@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KaloriKu - Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../js/register.js"></script>
+    <script src="../../js/register.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             background: url('https://img.freepik.com/free-photo/tasty-batch-food-cooked-with-copy-space_23-2148765560.jpg?t=st=1737652778~exp=1737656378~hmac=2d291e1d17c3854afe0db5620b3b410c24a4dde78feb1786bd586b14eabf5c9f&w=996') no-repeat center center fixed;
             background-size: cover;
         }
-
         .overlay {
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(5px);
         }
     </style>
 </head>
-
 <body class="font-sans leading-normal tracking-normal">
     <!-- Navbar Start -->
     <nav class="bg-gradient-to-r from-teal-500 to-emerald-500 p-6">
@@ -55,6 +52,15 @@
                     <label for="password" class="block text-gray-700 font-semibold mb-3 text-xl">Password</label>
                     <input id="password" type="password" class="w-full p-5 border rounded-lg text-xl" name="password" placeholder="Masukkan password" required>
                 </div>
+                
+                <!-- Category Selection -->
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-semibold mb-3 text-xl">Pilih Kategori Favorit</label>
+                    <div class="space-y-2" id="categories">
+                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="diet" class="mr-2"> Diet Sehat</label>
+                    </div>
+                </div>
+                
                 <input type="hidden" id="role" name="role">
                 <div class="text-center">
                     <button type="button" id="select-role" class="bg-blue-500 text-white px-10 py-5 rounded-lg text-xl hover:bg-blue-400 transition">Pilih Role</button>
@@ -91,7 +97,35 @@
                 }
             });
         });
+
+        function fetchMenu() {
+            try {
+                fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu")
+                    .then(response => response.json())
+                    .then(data => {
+                        const category = document.getElementById("categories");
+                        data.forEach(menu => {
+                            const label = document.createElement("label");
+                            const input = document.createElement("input");
+                            const text = document.createTextNode(menu.name);
+                            input.type = "checkbox";
+                            input.name = "categories";
+                            input.value = menu.name;
+                            input.classList.add("mr-2");
+                            label.classList.add("flex", "items-center");
+                            label.appendChild(input);
+                            label.appendChild(text);
+                            category.appendChild(label);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching menu:", error));
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", fetchMenu);
+        
     </script>
 </body>
-
 </html>

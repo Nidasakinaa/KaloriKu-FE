@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value.trim();
         const role = document.getElementById("role").value;
 
+        // Ambil semua kategori yang dipilih sebagai array
+        const categories = Array.from(document.querySelectorAll("input[name='categories']:checked"))
+                               .map(checkbox => checkbox.value);
+
         // Validasi nama
         if (!/^[a-zA-Z\s]+$/.test(name)) {
             Swal.fire({
@@ -41,12 +45,24 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // Pastikan ada kategori yang dipilih
+        if (categories.length === 0) {
+            Swal.fire({
+                icon: "error",
+                title: "No Category Selected",
+                text: "Harap pilih setidaknya satu kategori.",
+                allowOutsideClick: false
+            });
+            return;
+        }
+
         const requestBody = {
             name: name,
             phone: phone,
             username: username,
             password: password,
-            role: role
+            role: role,
+            personalized_categories: categories // Kirim sebagai array
         };
 
         try {
