@@ -1,4 +1,7 @@
 async function fetchMenuData() {
+  const container = document.getElementById("menu-container");
+  container.innerHTML = '<p class="text-center my-4">Loading menu data...</p>';
+
   try {
     const response = await fetch(
       "https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu"
@@ -16,10 +19,10 @@ async function fetchMenuData() {
       JSON.parse(localStorage.getItem("personalized_categories")) || [];
     console.log("Personalized Categories:", personalizedCategories);
 
-    // Filter menu berdasarkan kategori yang disimpan di localStorage
-    const filteredMenuItems = menuItems.filter((item) =>
-      personalizedCategories.includes(item.category)
-    );
+    // Filter menu berdasarkan nama yang dipilih oleh user
+        const filteredMenuItems = menuItems.filter((item) =>
+            personalizedCategories.some(cat => cat.toLowerCase().trim() === item.name.toLowerCase().trim())
+        );
 
     const container = document.getElementById("menu-container");
     container.innerHTML = ""; // Kosongkan kontainer sebelum menambahkan data baru

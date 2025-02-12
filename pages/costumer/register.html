@@ -101,24 +101,31 @@
         function fetchMenu() {
             try {
                 fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu")
-                    .then(response => response.json())
-                    .then(data => {
-                        const category = document.getElementById("categories");
-                        data.forEach(menu => {
-                            const label = document.createElement("label");
-                            const input = document.createElement("input");
-                            const text = document.createTextNode(menu.name);
-                            input.type = "checkbox";
-                            input.name = "categories";
-                            input.value = menu.name;
-                            input.classList.add("mr-2");
-                            label.classList.add("flex", "items-center");
-                            label.appendChild(input);
-                            label.appendChild(text);
-                            category.appendChild(label);
-                        });
-                    })
-                    .catch(error => console.error("Error fetching menu:", error));
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const category = document.getElementById("categories");
+                    data.forEach(menu => {
+                        const label = document.createElement("label");
+                        label.classList.add("flex", "items-center");
+
+                        const input = document.createElement("input");
+                        input.type = "checkbox";
+                        input.name = "categories";
+                        input.value = menu.name;
+                        input.classList.add("mr-2");
+
+                        label.appendChild(input);
+                        label.appendChild(document.createTextNode(menu.name));
+                        category.appendChild(label);
+                    });
+                })
+                .catch(error => console.error("Error fetching menu:", error));
+
             } catch (error) {
                 console.error("Error:", error);
             }
