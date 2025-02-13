@@ -57,7 +57,10 @@
                 <div class="mb-8">
                     <label class="block text-gray-700 font-semibold mb-3 text-xl">Pilih Kategori Favorit</label>
                     <div class="space-y-2" id="categories">
-                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="diet" class="mr-2"> Diet Sehat</label>
+                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="diet" class="mr-2"> Diet Sehat</input></label>
+                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="Vegan" class="mr-2"> Vegan</input></label>
+                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="High Protein" class="mr-2"> High Protein</input></label>
+                        <label class="flex items-center"><input id="personalized_categories" type="checkbox" name="categories" value="Salad" class="mr-2"> Salad</input></label>
                     </div>
                 </div>
                 
@@ -96,42 +99,39 @@
                     Swal.fire("Role dipilih!", "Anda mendaftar sebagai " + result.value, "success");
                 }
             });
-        });
+        });        //     try {
+        //         fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu")
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error(`HTTP error! Status: ${response.status}`);
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             const category = document.getElementById("categories");
+        //             data.forEach(menu => {
+        //                 const label = document.createElement("label");
+        //                 label.classList.add("flex", "items-center");
 
-        function fetchMenu() {
-            try {
-                fetch("https://ws-kaloriku-4cf736febaf0.herokuapp.com/menu")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const category = document.getElementById("categories");
-                    data.forEach(menu => {
-                        const label = document.createElement("label");
-                        label.classList.add("flex", "items-center");
+        //                 const input = document.createElement("input");
+        //                 input.type = "checkbox";
+        //                 input.name = "categories";
+        //                 input.value = menu.name;
+        //                 input.classList.add("mr-2");
 
-                        const input = document.createElement("input");
-                        input.type = "checkbox";
-                        input.name = "categories";
-                        input.value = menu.name;
-                        input.classList.add("mr-2");
+        //                 label.appendChild(input);
+        //                 label.appendChild(document.createTextNode(menu.name));
+        //                 category.appendChild(label);
+        //             });
+        //         })
+        //         .catch(error => console.error("Error fetching menu:", error));
 
-                        label.appendChild(input);
-                        label.appendChild(document.createTextNode(menu.name));
-                        category.appendChild(label);
-                    });
-                })
-                .catch(error => console.error("Error fetching menu:", error));
-
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        }
+        //     } catch (error) {
+        //         console.error("Error:", error);
+        //     }
+        // }
         
-        document.addEventListener("DOMContentLoaded", fetchMenu);
+        // document.addEventListener("DOMContentLoaded", fetchMenu);
         
     </script>
 </body>
