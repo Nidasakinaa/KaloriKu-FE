@@ -17,12 +17,11 @@ async function fetchMenuData() {
     // Ambil kategori yang dipersonalisasi dari localStorage
     const personalizedCategories =
       JSON.parse(localStorage.getItem("personalized_categories")) || [];
-    console.log("Personalized Categories:", personalizedCategories);
 
     // Filter menu berdasarkan nama yang dipilih oleh user
-        const filteredMenuItems = menuItems.filter((item) =>
-            personalizedCategories.some(cat => cat.toLowerCase().trim() === item.name.toLowerCase().trim())
-        );
+    const filteredMenuItems = menuItems.filter((item) =>
+      personalizedCategories.some(cat => cat.toLowerCase().trim() === item.category.toLowerCase().trim())
+    );
 
     const container = document.getElementById("menu-container");
     container.innerHTML = ""; // Kosongkan kontainer sebelum menambahkan data baru
@@ -32,22 +31,19 @@ async function fetchMenuData() {
       card.className = "bg-white p-6 rounded-lg shadow-lg mb-4";
 
       card.innerHTML = `
-              <img src="${item.image}" alt="${
-        item.name
-      }" class="w-full h-80 object-cover rounded-lg mb-4">
+              <img src="${item.image}" alt="${item.name
+        }" class="w-full h-80 object-cover rounded-lg mb-4">
               <h3 class="text-xl font-semibold mb-2">${item.name}</h3>
-              <p class="text-gray-700 mb-2"><strong>Kategori:</strong> ${
-                item.category
-              }</p>
-              <p class="text-gray-700 mb-2"><strong>Kalori:</strong> ${
-                item.calories
-              } kcal</p>
+              <p class="text-gray-700 mb-2"><strong>Kategori:</strong> ${item.category
+        }</p>
+              <p class="text-gray-700 mb-2"><strong>Kalori:</strong> ${item.calories
+        } kcal</p>
               <p class="text-gray-700"><strong>Komposisi:</strong></p>
               <ul class="list-disc pl-5 text-gray-700">
                   ${item.ingredients
-                    .split(",")
-                    .map((ing) => `<li>${ing.trim()}</li>`)
-                    .join("")}
+          .split(",")
+          .map((ing) => `<li>${ing.trim()}</li>`)
+          .join("")}
               </ul>
           `;
 
